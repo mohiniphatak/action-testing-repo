@@ -1,0 +1,30 @@
+name: Node js app deploy to EKS
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Install kubectl
+      uses: azure/setup-kubectl@v2.0
+      with:
+        version: 'v1.24.0' # default is latest stable
+      id: install
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ''
+        aws-secret-access-key: ''
+        aws-region: us-east-1
+
+    - name: Update kube config
+      run: aws eks update-kubeconfig --name ferocious-wardrobe-1716288053
+
+    - name: get EKS pods
+      run: |
+        kubectl get pods -n default
