@@ -18,12 +18,12 @@ jobs:
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ''
-        aws-secret-access-key: ''
+        aws-access-key-id: AKIAQ3EGWGMKDDLTQJFN
+        aws-secret-access-key: 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
         aws-region: us-east-1
 
     - name: Update kube config
-      run: aws eks update-kubeconfig --name ferocious-wardrobe-1716288053
+      run: aws eks update-kubeconfig --region us-east-1 --name floral-rainbow-1716294460
 
     - name: get EKS pods
       run: |
